@@ -1,0 +1,15 @@
+#Sample TLS Service, but not needed 
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   namespace: hivemq
+#   name: hivemq-mqtt-tls
+# spec:
+#   selector:
+#     app: hivemq-cluster
+#   ports:
+#     - protocol: TCP
+#       port: 8883
+#       targetPort: 8883
+#   #type: LoadBalancer
+#   type: ClusterIP

@@ -1,0 +1,36 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  namespace: hivemq
+  name: hivemq-mqtt-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 1883
+      name: hivemq-mqtt
+      protocol: TCP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: hivemq
+  name: hivemq-mqtt-virtualservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - hivemq-mqtt-gateway
+  tcp:
+  - match:
+    - port: 1883
+      gateways:
+        - hivemq-mqtt-gateway
+    route:
+    - destination:
+        host: hivemq-mqtt.hivemq.svc.cluster.local
+        port:
+          number: 1883

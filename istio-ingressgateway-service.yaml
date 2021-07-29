@@ -1,0 +1,176 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"istio-ingressgateway","install.operator.istio.io/owning-resource":"unknown","install.operator.istio.io/owning-resource-namespace":"istio-system","istio":"ingressgateway","istio.io/rev":"asm-1102-3","operator.istio.io/component":"IngressGateways","operator.istio.io/managed":"Reconcile","operator.istio.io/version":"1.10.2-asm.3","release":"istio"},"name":"istio-ingressgateway","namespace":"istio-system"},"spec":{"ports":[{"name":"status-port","port":15021,"protocol":"TCP","targetPort":15021},{"name":"http2","port":80,"protocol":"TCP","targetPort":8080},{"name":"https","port":443,"protocol":"TCP","targetPort":8443},{"name":"tcp-istiod","port":15012,"protocol":"TCP","targetPort":15012},{"name":"tls","port":15443,"protocol":"TCP","targetPort":15443}],"selector":{"app":"istio-ingressgateway","istio":"ingressgateway"},"type":"LoadBalancer"}}
+  creationTimestamp: "2021-07-27T02:36:48Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: istio-ingressgateway
+    install.operator.istio.io/owning-resource: unknown
+    install.operator.istio.io/owning-resource-namespace: istio-system
+    istio: ingressgateway
+    istio.io/rev: asm-1102-3
+    operator.istio.io/component: IngressGateways
+    operator.istio.io/managed: Reconcile
+    operator.istio.io/version: 1.10.2-asm.3
+    release: istio
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:labels:
+          f:app: {}
+          f:install.operator.istio.io/owning-resource: {}
+          f:install.operator.istio.io/owning-resource-namespace: {}
+          f:istio: {}
+          f:istio.io/rev: {}
+          f:operator.istio.io/component: {}
+          f:operator.istio.io/managed: {}
+          f:operator.istio.io/version: {}
+          f:release: {}
+      f:spec:
+        f:ports:
+          k:{"port":80,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":443,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":15012,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":15021,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":15443,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          f:app: {}
+          f:istio: {}
+        f:type: {}
+    manager: istio-operator
+    operation: Apply
+    time: "2021-07-27T02:36:48Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-07-27T02:37:39Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:ports:
+          k:{"port":1883,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:nodePort: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":8080,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:nodePort: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":8883,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:nodePort: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+    manager: kubectl-edit
+    operation: Update
+    time: "2021-07-28T04:58:24Z"
+  name: istio-ingressgateway
+  namespace: istio-system
+  resourceVersion: "786982"
+  selfLink: /api/v1/namespaces/istio-system/services/istio-ingressgateway
+  uid: 31bc4895-26f2-4a54-8e3e-2055711a156a
+spec:
+  clusterIP: 10.8.15.168
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: hivemq-mqtt-tls-port
+    nodePort: 31845
+    port: 8883
+    protocol: TCP
+    targetPort: 8883
+  - name: hivemq-mqtt-port
+    nodePort: 31835
+    port: 1883
+    protocol: TCP
+    targetPort: 1883
+  - name: hivemq-web-port
+    nodePort: 31830
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: status-port
+    nodePort: 31817
+    port: 15021
+    protocol: TCP
+    targetPort: 15021
+  - name: http2
+    nodePort: 31965
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  - name: https
+    nodePort: 30955
+    port: 443
+    protocol: TCP
+    targetPort: 8443
+  - name: tcp-istiod
+    nodePort: 31738
+    port: 15012
+    protocol: TCP
+    targetPort: 15012
+  - name: tls
+    nodePort: 32664
+    port: 15443
+    protocol: TCP
+    targetPort: 15443
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 34.82.16.76
