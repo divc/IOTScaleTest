@@ -45,11 +45,27 @@ https://www.blazemeter.com/blog/how-use-counter-jmeter-test
 
 Creating certs 
 
-openssl req -x509 -sha256 -nodes -days 30 -newkey rsa:2048 -subj '/O=rootca Inc./CN=example.com' -keyout rootca.key -out rootca.crt
 
-openssl req -out hivemq.csr -newkey rsa:2048 -nodes -keyout hivemq.key -subj "/CN=hivemq.example.com/O=hivemq app"
 
-openssl x509 -req -days 30 -CA rootca.crt -CAkey rootca.key -set_serial 0 -in hivemq.csr -out hivemq.crt
 
-kubectl create -n istio-system secret tls hivemq-credential --key=hivemq.key --cert=hivemq.crt
+mkdir ca
+cd ca
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout ca.key -out ca.crt
 
+cd ..
+mkdir broker
+cd broker
+openssl req -out broker.csr -newkey rsa:2048 -nodes -keyout broker.key
+
+
+openssl x509 -req -days 365 -CA ../ca/ca.crt -CAkey ../ca/ca.key -set_serial 0 -in broker.csr -out broker.crt
+
+kubectl create -n hivemq secret tls hivemq-credential --key=broker.key --cert=broker.crt
+
+cd ..
+mkdir client 
+cd client 
+
+openssl req -out client.csr -newkey rsa:2048 -nodes -keyout client.key
+
+openssl x509 -req -days 365 -CA ../ca/ca.crt -CAkey ../ca/ca.key -set_serial 0 -in client.csr -out client.crt

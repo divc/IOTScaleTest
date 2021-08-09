@@ -9,8 +9,8 @@ spec:
   servers:
   - port:
       number: 8883
-      name: hivemq-mqtt-tls
-      protocol: TLS
+      name: tls
+      protocol: tls
     tls:
       mode: SIMPLE
       credentialName: hivemq-credential
@@ -30,8 +30,8 @@ spec:
   tcp:
   - match:
     - port: 8883
-      gateways:
-        - hivemq-mqtt-tls-gateway
+      #gateways:
+      #  - hivemq-mqtt-tls-gateway
     route:
     - destination:
         host: hivemq-mqtt.hivemq.svc.cluster.local

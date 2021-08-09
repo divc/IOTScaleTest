@@ -27,8 +27,8 @@ spec:
   tcp:
   - match:
     - port: 1883
-      gateways:
-        - hivemq-mqtt-gateway
+      #gateways:
+      #  - hivemq-mqtt-gateway
     route:
     - destination:
         host: hivemq-mqtt.hivemq.svc.cluster.local
