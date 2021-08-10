@@ -112,7 +112,3 @@ spec:
     istio: ingressgateway
   sessionAffinity: None
   type: LoadBalancer
-status:
-  loadBalancer:
-    ingress:
-    - ip: 34.82.16.76
