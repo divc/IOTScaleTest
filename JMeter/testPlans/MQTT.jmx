@@ -33,7 +33,7 @@
           <stringProp name="mqtt.conn_timeout">10</stringProp>
           <stringProp name="mqtt.protocol">TCP</stringProp>
           <stringProp name="mqtt.ws_path"></stringProp>
-          <boolProp name="mqtt.dual_ssl_authentication">false</boolProp>
+          <boolProp name="mqtt.dual_ssl_authentication">true</boolProp>
           <stringProp name="mqtt.clientcert_file_path"></stringProp>
           <stringProp name="mqtt.clientcert_password"></stringProp>
           <stringProp name="mqtt.user_name"></stringProp>
@@ -48,7 +48,7 @@
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
-          <stringProp name="LoopController.loops">500</stringProp>
+          <stringProp name="LoopController.loops">100000</stringProp>
         </LoopController>
         <hashTree>
           <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
@@ -61,9 +61,9 @@
           </CounterConfig>
           <hashTree/>
           <net.xmeter.samplers.PubSampler guiclass="net.xmeter.gui.PubSamplerUI" testclass="net.xmeter.samplers.PubSampler" testname="MQTT Pub Sampler" enabled="true">
-            <stringProp name="mqtt.topic_name">test_topic</stringProp>
+            <stringProp name="mqtt.topic_name">topic</stringProp>
             <stringProp name="mqtt.qos_level">0</stringProp>
-            <boolProp name="mqtt.add_timestamp">false</boolProp>
+            <boolProp name="mqtt.add_timestamp">true</boolProp>
             <stringProp name="mqtt.message_type">String</stringProp>
             <stringProp name="mqtt.message_type_fixed_length">1024</stringProp>
             <stringProp name="mqtt.message_to_sent">Hello World - ${cnt} - Thread Number {threadNum}</stringProp>
