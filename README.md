@@ -69,3 +69,7 @@ cd client
 openssl req -out client.csr -newkey rsa:2048 -nodes -keyout client.key
 
 openssl x509 -req -days 365 -CA ../ca/ca.crt -CAkey ../ca/ca.key -set_serial 0 -in client.csr -out client.crt
+
+
+
+kubectl create -n istio-system secret tls hivemq-credential --key=broker.key --cert=broker.crt
