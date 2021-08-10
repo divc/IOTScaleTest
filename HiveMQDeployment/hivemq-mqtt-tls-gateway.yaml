@@ -10,12 +10,12 @@ spec:
   - port:
       number: 8883
       name: tls
-      protocol: tls
+      protocol: TLS
     tls:
       mode: SIMPLE
-      credentialName: hivemq-credential
+      credentialName: httpbin-credential
     hosts:
-    - "*"
+    - "httpbin.example.com"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -24,7 +24,7 @@ metadata:
   name: hivemq-mqtt-tls-virtualservice
 spec:
   hosts:
-  - "*"
+  - "httpbin.example.com"
   gateways:
   - hivemq-mqtt-tls-gateway
   tcp:
