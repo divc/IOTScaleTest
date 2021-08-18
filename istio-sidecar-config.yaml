@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Sidecar
+metadata:
+  name: istio-sidecar-haproxy
+  namespace: hivemq
+  annotations:
+    sidecar.istio.io/proxyRequestsCPU: "2"
+    sidecar.istio.io/proxyRequestsMemory: "1Gi"
+    sidecar.istio.io/proxyLimitsCPU: "4"
+    sidecar.istio.io/proxyLimitsMemory: "4Gi"
+spec:
+  workloadSelector:
+    labels:
+      app: hivemq-cluster
